@@ -1,15 +1,39 @@
 <?php
 
-class Pessoa {
-    public $nome;
-    public $idade;
+class Login {
+    private $email;
+    private $senha;
 
-    public function Falar() {
-        echo $this->nome . " de " . $this->idade . " acabou de falar <br>";
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($e) {
+        $email = filter_var($e, FILTER_SANITIZE_EMAIL);
+        $this->email = $email;
+    }
+
+    public function getSenha() {
+        return $this->senha;
+    }
+
+    public function setSenha($s) {
+        $this->senha = $s;
+    }
+
+    public function Logar() {
+        if ($this->email == "teste@teste.com" && $this->senha == "123456") {
+            echo "Logado com sucesso!";
+        } else {
+            echo "Dados inválidos";
+        }
     }
 }
 
-$rodrigo = new Pessoa();
-$rodrigo->nome = "Rodrigo Santos de Oliveira";
-$rodrigo->idade = 25;
-$rodrigo->Falar();
+$logar = new Login();
+$logar->setEmail("teste()/@teste.com");
+$logar->setSenha("123456");
+$logar->Logar();
+echo "<br>";
+echo $logar->getEmail() . "<br>";
+echo $logar->getSenha() . "<br>";
