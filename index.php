@@ -1,39 +1,16 @@
 <?php
 
 class Login {
-    private $email;
-    private $senha;
+    public static $user;
 
-    public function getEmail() {
-        return $this->email;
+    public static function verificaLogin() {
+        echo "O usuário " . self::$user . " está logado";
     }
 
-    public function setEmail($e) {
-        $email = filter_var($e, FILTER_SANITIZE_EMAIL);
-        $this->email = $email;
-    }
-
-    public function getSenha() {
-        return $this->senha;
-    }
-
-    public function setSenha($s) {
-        $this->senha = $s;
-    }
-
-    public function Logar() {
-        if ($this->email == "teste@teste.com" && $this->senha == "123456") {
-            echo "Logado com sucesso!";
-        } else {
-            echo "Dados inválidos";
-        }
+    public function sairSistema() {
+        echo "O usuário deslogou";
     }
 }
 
-$logar = new Login();
-$logar->setEmail("teste()/@teste.com");
-$logar->setSenha("123456");
-$logar->Logar();
-echo "<br>";
-echo $logar->getEmail() . "<br>";
-echo $logar->getSenha() . "<br>";
+$login = new Login();
+$login->sairSistema();
