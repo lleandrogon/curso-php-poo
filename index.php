@@ -1,39 +1,35 @@
 <?php
 
-class Login {
-    private $email;
-    private $senha;
+class Produtos {
+    public $nome;
+    public $valor;
 
-    public function getEmail() {
-        return $this->email;
+    function __construct($nome, $valor) {
+        $this->nome = $nome;
+        $this->valor = $valor;
+    }
+}
+
+class Carrinho {
+    public $produtos;
+
+    public function adiciona(Produtos $produto) {
+        $this->produtos[] = $produto;
     }
 
-    public function setEmail($e) {
-        $email = filter_var($e, FILTER_SANITIZE_EMAIL);
-        $this->email = $email;
-    }
-
-    public function getSenha() {
-        return $this->senha;
-    }
-
-    public function setSenha($s) {
-        $this->senha = $s;
-    }
-
-    public function Logar() {
-        if ($this->email == "teste@teste.com" && $this->senha == "123456") {
-            echo "Logado com sucesso!";
-        } else {
-            echo "Dados inválidos";
+    public function exibe() {
+        foreach ($this->produtos as $produto) {
+            echo $produto->nome . "<br>";
+            echo $produto->valor . "<hr>";
         }
     }
 }
 
-$logar = new Login();
-$logar->setEmail("teste()/@teste.com");
-$logar->setSenha("123456");
-$logar->Logar();
-echo "<br>";
-echo $logar->getEmail() . "<br>";
-echo $logar->getSenha() . "<br>";
+$produto1 = new Produtos("Notebook", "1500");
+$produto2 = new Produtos("Mouse", "50");
+
+$carrinho = new Carrinho();
+$carrinho->adiciona($produto1);
+$carrinho->adiciona($produto2);
+
+$carrinho->exibe();
