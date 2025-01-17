@@ -1,9 +1,16 @@
-<?php
+<?php 
 
 require_once "vendor/autoload.php";
 
-use Cocur\Slugify\Slugify;
+$produto = new \App\Model\Produto();
+$produto->setId(2);
+$produto->setNome("Janela");
+$produto->setDescricao("Vidro");
 
-$slug = new Slugify();
-$slug->addRule("ão", "funcionou");
-echo $slug->slugify("Teste com acentuação para geração de slug", "_");
+$produtoDao = new \App\Model\ProdutoDao();
+$produtoDao->delete($produto);
+$produtoDao->read();
+
+foreach($produtoDao->read() as $produto) {
+    echo $produto["nome"] . "<br>" . $produto["descricao"] . "<hr>";
+}
